@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/focal64"
     config.vm.hostname = "procure-analyzer"
   
-    # синхронізація локальної папки (твій проєкт потрапить всередину ВМ)
+    # синхронізація локальної папки 
     config.vm.synced_folder ".", "/home/vagrant/app"
   
     # автоматичне налаштування середовища
