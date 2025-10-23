@@ -1,0 +1,35 @@
+@model IEnumerable<ProcureRiskAnalyzer.Web.Models.Tender>
+
+<h2>Search Results</h2>
+
+@if (!Model.Any())
+{
+    <p>No results found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Buyer</th>
+                <th>Supplier</th>
+                <th>Date</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+                <tr>
+                    <td>@t.TenderCode</td>
+                    <td>@t.Buyer</td>
+                    <td>@t.Supplier?.Name</td>
+                    <td>@t.Date.ToShortDateString()</td>
+                    <td>@t.ExpectedValue ₴</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<a href="/Search">New search</a>

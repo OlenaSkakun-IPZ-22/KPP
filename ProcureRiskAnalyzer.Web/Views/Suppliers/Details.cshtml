@@ -1,0 +1,13 @@
+@model ProcureRiskAnalyzer.Web.Models.Supplier
+
+<h2>@Model.Name (@Model.Country)</h2>
+
+<h4>Tenders by this supplier:</h4>
+<ul>
+@foreach (var tender in Model.Tenders)
+{
+    <li>@tender.TenderCode — @tender.Buyer — @tender.ExpectedValue ₴</li>
+}
+</ul>
+
+<a href="/Suppliers">Back to list</a>

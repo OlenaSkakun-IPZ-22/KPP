@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Okta.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+using ProcureRiskAnalyzer.Web.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,27 @@ builder.Services.AddAuthentication(options =>
     ClientId = builder.Configuration["Okta:ClientId"],
     ClientSecret = builder.Configuration["Okta:ClientSecret"]
 });
+var dbProvider = builder.Configuration["DatabaseProvider"];
+
+switch (dbProvider)
+{
+    case "SqlServer":
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+        break;
+    case "Postgres":
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres")));
+        break;
+    case "Sqlite":
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")));
+        break;
+    default:
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseInMemoryDatabase("ProcureDB"));
+        break;
+}
 
 var app = builder.Build();
 

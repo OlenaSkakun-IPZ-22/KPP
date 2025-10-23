@@ -1,0 +1,22 @@
+@model IEnumerable<ProcureRiskAnalyzer.Web.Models.Supplier>
+
+<h2>Suppliers</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Country</td>
+                <td><a href="/Suppliers/Details/@item.Id">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

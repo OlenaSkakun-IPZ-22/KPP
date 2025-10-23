@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search Tenders</h2>
+
+<form method="post">
+    <div>
+        <label>Buyer:</label>
+        <input type="text" name="buyer" />
+    </div>
+    <div>
+        <label>Supplier:</label>
+        <input type="text" name="supplier" />
+    </div>
+    <div>
+        <label>From:</label>
+        <input type="date" name="from" />
+    </div>
+    <div>
+        <label>To:</label>
+        <input type="date" name="to" />
+    </div>
+    <button type="submit">Search</button>
+</form>

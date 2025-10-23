@@ -1,0 +1,10 @@
+@model ProcureRiskAnalyzer.Web.Models.Tender
+
+<h2>Tender @Model.TenderCode</h2>
+
+<p><strong>Buyer:</strong> @Model.Buyer</p>
+<p><strong>Supplier:</strong> @Model.Supplier?.Name</p>
+<p><strong>Expected Value:</strong> @Model.ExpectedValue ₴</p>
+<p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+
+<a href="/Tenders">Back to list</a>
