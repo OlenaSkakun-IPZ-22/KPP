@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Додаємо MVC
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddControllers();
+
 // Налаштовуємо авторизацію через Okta OAuth2
 builder.Services.AddAuthentication(options =>
 {
@@ -43,6 +45,7 @@ switch (dbProvider)
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseInMemoryDatabase("ProcureDB"));
         break;
+
 }
 
 var app = builder.Build();
@@ -51,6 +54,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
 
 // Маршрутизація
 app.MapControllerRoute(
